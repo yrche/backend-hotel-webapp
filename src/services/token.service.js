@@ -21,7 +21,7 @@ class TokenService {
 
     validRefreshToken(token) {
         try {
-            return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+            return jwt.verify(token, process.env.JWT_REFRESH_SECRET)
         } catch (err) {
             return null
         }

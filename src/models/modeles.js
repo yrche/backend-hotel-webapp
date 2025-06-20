@@ -48,10 +48,86 @@ const Token = sequelize.define('tokens', {
     }
 })
 
+const Booking = sequelize.define('booking', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    user: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    room: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    checkInDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    },
+    checkOutDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    },
+    totalPrice: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+})
+
+const Room = sequelize.define('room', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    type: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    status: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "VC"
+    }
+})
+
+const RoomType = sequelize.define('roomType', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    pricePerNight: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    capacity: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+})
+
+User.hasMany(Booking, {foreignKey: 'user'});
 User.hasOne(Token, {foreignKey: 'user'});
 
+RoomType.hasMany(Room, {foreignKey: 'type'});
+
+Room.hasMany(Booking, {foreignKey: 'room'});
 
 module.exports = {
     User,
-    Token
+    Token,
+    Booking,
+    RoomType,
+    Room
 };

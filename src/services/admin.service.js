@@ -1,5 +1,6 @@
 const {User} = require('../models/modeles.js');
 const ApiError = require('../exeptions/api.error.js');
+const {RoomType} = require("../models/modeles");
 
 class AdminService {
     async getUsers() {

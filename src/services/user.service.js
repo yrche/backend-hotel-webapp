@@ -8,6 +8,11 @@ const ApiError = require('../exeptions/api.error.js');
 
 class UserService {
     async registration(user_name, email, password) {
+        const candidate_username = await User.findOne({where: {user_name}});
+        if (candidate_username) {
+            throw ApiError.BadRequest("User with this name already exists");
+        }
+
         const candidate = await User.findOne({where: {email}});
         if (candidate) {
             throw ApiError.BadRequest("User with this email already exists");
@@ -29,7 +34,7 @@ class UserService {
     async login(email, password) {
         const user = await User.findOne({where: {email}});
         if (!user) {
-            throw ApiError.BadRequest(`User with email address ${email} is not exists`);
+            throw ApiError.BadRequest(`An account with this email is not exists`);
         }
         let comparePasswords = bcrypt.compareSync(password, user.password);
         if (!comparePasswords) {
@@ -55,6 +60,7 @@ class UserService {
     }
 
     async refresh(refreshToken) {
+        console.log(refreshToken)
         if (!refreshToken) {
             throw ApiError.Unauthorized();
         }

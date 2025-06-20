@@ -1,6 +1,5 @@
 const {validationResult} = require('express-validator');
 const userService = require('../services/user.service.js');
-const adminService = require('../services/admin.service.js');
 const ApiError = require('../exeptions/api.error.js');
 
 class UserController {
@@ -73,7 +72,7 @@ class UserController {
             });
             return res.json(userData)
         } catch (err) {
-            next(err);
+            next(err)
         }
     }
 }

@@ -1,8 +1,10 @@
 const {Router} = require('express');
 const {UserController} = require("../controllers/user.controller");
+const roomController = require('../controllers/room.controller');
 const {body} = require('express-validator');
 const router = Router();
 const userController = new UserController();
+
 
 router.post('/signup', [
     body('email').isEmail(),

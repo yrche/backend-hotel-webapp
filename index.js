@@ -6,7 +6,6 @@ const router = require('./src/routes/index.js');
 const {connectDataBase} = require("./src/database/db.create.js");
 const errorMiddleware = require('./src/middelware/error.middleware.js')
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const hostname = process.env.HOSTNAME || 'localhost';

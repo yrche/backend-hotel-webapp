@@ -114,6 +114,15 @@ class AdminController {
             next(err)
         }
     }
+
+    async getAllReservations(req, res, next) {
+        try {
+            const reservations = await adminService.getAllReservations();
+            res.json(reservations);
+        } catch (err) {
+            next(err)
+        }
+    }
 }
 
 module.exports = new AdminController();

@@ -17,7 +17,8 @@ router.delete('/room-type/:id/delete', adminController.deleteRoomType);
 router.get('/room-types', adminController.getRoomTypes);
 router.post('/room/add', adminController.addRoom);
 router.patch('/room/:id/change', adminController.changeRoomStatus);
-router.patch('/reservation/:id/change', verifyUserBooking, calculateTotalPrice, adminController.changeUserReservation)
-router.delete('/reservation/:id/delete', adminController.deleteUserReservation)
+router.patch('/reservation/:id/change', verifyUserBooking, calculateTotalPrice, adminController.changeUserReservation);
+router.delete('/reservation/:id/delete', adminController.deleteUserReservation);
+router.get('/reservations', adminController.getAllReservations)
 
 module.exports = router;

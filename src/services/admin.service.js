@@ -1,6 +1,6 @@
 const {User} = require('../models/modeles.js');
 const ApiError = require('../exeptions/api.error.js');
-const {RoomType} = require("../models/modeles");
+const {RoomType, Booking} = require("../models/modeles");
 
 class AdminService {
     async getUsers() {
@@ -23,6 +23,10 @@ class AdminService {
         }
 
         return await user.update({role: "USER"});
+    }
+
+    async getAllReservations() {
+        return await Booking.findAll()
     }
 }
 
